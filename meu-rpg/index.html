@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grimório do Mestre - D&D</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#b8860b">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="print.css" media="print">
+</head>
+<body>
+  <header>
+    <h1>🐉 Grimório do Mestre</h1>
+    <button id="theme-toggle" title="Alternar tema">🌙</button>
+
+    <nav>
+    <button class="tab-btn active" data-tab="dragoes">Dragões</button>
+      <button class="tab-btn" data-tab="jogadores">Jogadores</button>
+      <button class="tab-btn" data-tab="inimigos">Inimigos</button>
+      <button class="tab-btn" data-tab="magias">Magias</button>
+      <button class="tab-btn" data-tab="iniciativa">Iniciativa</button>
+      <button class="tab-btn" data-tab="mapa">Mapa</button>
+      <button class="tab-btn" data-tab="log">Log</button>
+    </nav>
+
+    <div id="dice-box">
+      <button class="dice-btn" data-dice="4">d4</button>
+      <button class="dice-btn" data-dice="6">d6</button>
+      <button class="dice-btn" data-dice="8">d8</button>
+      <button class="dice-btn" data-dice="10">d10</button>
+      <button class="dice-btn" data-dice="12">d12</button>
+      <button class="dice-btn" data-dice="20">d20</button>
+      <button class="dice-btn" data-dice="100">d100</button>
+      <span id="dice-result">🎲 Role um dado!</span>
+    </div>
+
+    <div id="backup-box">
+      <button id="btn-export" class="dice-btn">💾 Exportar Backup</button>
+      <label id="btn-import" for="file-import" class="dice-btn" style="display:inline-block;">📂 Importar Backup</label>
+      <input type="file" id="file-import" accept=".json" hidden>
+      <button id="btn-print" class="dice-btn">🖨️ Imprimir Fichas</button>
+      <button id="btn-bg" class="dice-btn" title="Trocar fundo">🖼️ Fundo</button>
+    </div>
+
+    <div id="audio-controls">
+      <button class="amb-btn" data-amb="taverna">🍺 Taverna</button>
+      <button class="amb-btn" data-amb="masmorra">🕯️ Masmorra</button>
+      <button class="amb-btn" data-amb="combate">⚔️ Combate</button>
+      <button class="amb-btn" data-amb="floresta">🌲 Floresta</button>
+      <button class="amb-btn" data-amb="off">🔇 Parar</button>
+      <span id="audio-status">—</span>
+      <audio id="audio-player" loop></audio>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== ABA DRAGÕES ===== -->
+   <section id="dragoes" class="tab-content active">
+      <h2>Dragões</h2>
+      <div style="margin-bottom:15px;">
+        <button id="btn-gerar-dragao" class="dice-btn">🎲 Gerar Dragão Aleatório</button>
+      </div>
+      <div id="lista-dragoes" class="grid"></div>
+
+      <h3>Adicionar Dragão</h3>
+      <form id="form-dragao" class="form-card">
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="text" name="tipo" placeholder="Tipo (ex: Vermelho)" required>
+        <input type="number" name="idade" placeholder="Idade (anos)" required>
+        <input type="number" name="hp" placeholder="HP" required>
+        <input type="text" name="sopro" placeholder="Sopro (ex: Fogo)" required>
+        <button type="submit">Adicionar</button>
+      </form>
+    </section>
+
+    <!-- ===== ABA JOGADORES ===== -->
+    <section id="jogadores" class="tab-content">
+      <h2>Fichas dos Jogadores</h2>
+
+      <div style="margin-bottom:20px;">
+        <h3>📊 Comparativo de HP</h3>
+        <canvas id="grafico-hp" width="800" height="250"
+          style="background:#2c1810; border:2px solid #b8860b; border-radius:8px; max-width:100%;"></canvas>
+      </div>
+
+      <div id="lista-jogadores" class="grid"></div>
+
+      <h3>Criar Ficha de Jogador</h3>
+      <form id="form-jogador" class="form-card">
+        <input type="text" name="nome" placeholder="Nome do personagem" required>
+        <input type="text" name="classe" placeholder="Classe" required>
+        <input type="text" name="raca" placeholder="Raça" required>
+        <input type="number" name="nivel" placeholder="Nível" required>
+        <input type="number" name="hp" placeholder="HP" required>
+        <input type="number" name="ca" placeholder="CA" required>
+
+        <div class="atributos-grid">
+          <label>FOR <input type="number" name="forca" value="10" min="1" max="20"></label>
+          <label>DES <input type="number" name="destreza" value="10" min="1" max="20"></label>
+          <label>CON <input type="number" name="constituicao" value="10" min="1" max="20"></label>
+          <label>INT <input type="number" name="inteligencia" value="10" min="1" max="20"></label>
+          <label>SAB <input type="number" name="sabedoria" value="10" min="1" max="20"></label>
+          <label>CAR <input type="number" name="carisma" value="10" min="1" max="20"></label>
+        </div>
+
+        <button type="submit">Criar Ficha</button>
+      </form>
+    </section>
+
+    <!-- ===== ABA INIMIGOS ===== -->
+    <section id="inimigos" class="tab-content">
+      <h2>Fichas de Inimigos</h2>
+      <div id="lista-inimigos" class="grid"></div>
+
+      <h3>Adicionar Inimigo</h3>
+      <form id="form-inimigo" class="form-card">
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="text" name="tipo" placeholder="Tipo (ex: Goblin)" required>
+        <input type="number" name="hp" placeholder="HP" required>
+        <input type="number" name="ca" placeholder="CA (Armadura)" required>
+        <input type="text" name="ataque" placeholder="Ataque" required>
+        <button type="submit">Adicionar</button>
+      </form>
+    </section>
+
+    <!-- ===== ABA MAGIAS ===== -->
+    <section id="magias" class="tab-content">
+      <h2>Magias</h2>
+      <div style="margin-bottom:20px;">
+        <button id="btn-restaurar-catalogo" class="dice-btn">📚 Restaurar Catálogo Padrão</button>
+      </div>
+      <div id="lista-magias" class="grid"></div>
+
+      <h3>Adicionar Magia</h3>
+      <form id="form-magia" class="form-card">
+        <input type="text" name="nome" placeholder="Nome da magia" required>
+        <input type="number" name="nivel" placeholder="Nível (0 = truque)" required>
+        <input type="text" name="escola" placeholder="Escola (ex: Evocação)" required>
+        <input type="text" name="dano" placeholder="Dano (ex: 8d6 fogo)">
+        <textarea name="descricao" placeholder="Descrição da magia" required></textarea>
+        <button type="submit">Adicionar</button>
+      </form>
+    </section>
+
+    <!-- ===== ABA INICIATIVA ===== -->
+    <section id="iniciativa" class="tab-content">
+      <h2>⚔️ Rastreador de Iniciativa</h2>
+      <p style="opacity:0.7; margin-bottom:15px;">
+        Role d20 + modificador para cada combatente. Turno atual destacado em dourado.
+      </p>
+
+      <form id="form-iniciativa" class="form-card">
+        <input type="text" name="nome" placeholder="Nome do combatente" required>
+        <input type="number" name="iniciativa" placeholder="Valor da iniciativa" required>
+        <input type="text" name="tipo" placeholder="Jogador / Inimigo" required>
+        <button type="submit">Adicionar à Iniciativa</button>
+      </form>
+
+      <div style="margin:20px 0; display:flex; gap:10px; flex-wrap:wrap;">
+        <button id="btn-proximo-turno" class="dice-btn">▶️ Próximo Turno</button>
+        <button id="btn-reset-iniciativa" class="dice-btn">🔄 Reiniciar Combate</button>
+      </div>
+
+      <div id="lista-iniciativa" class="grid"></div>
+    </section>
+
+    <!-- ===== ABA MAPA ===== -->
+    <section id="mapa" class="tab-content">
+      <h2>🗺️ Mapa de Combate</h2>
+      <p style="opacity:0.7; margin-bottom:15px;">
+        Clique numa célula para ciclar: vazio → 🛡️ jogador → 👹 inimigo → 🧱 obstáculo.
+      </p>
+
+      <div style="margin-bottom:15px; display:flex; gap:10px; flex-wrap:wrap;">
+        <label style="display:flex; align-items:center; gap:8px;">
+          Tamanho do grid:
+          <select id="grid-size" style="padding:6px; background:#1a1410; color:#e8d5b7; border:1px solid #b8860b;">
+            <option value="8">8×8</option>
+            <option value="10" selected>10×10</option>
+            <option value="15">15×15</option>
+            <option value="20">20×20</option>
+          </select>
+        </label>
+        <button id="btn-limpar-mapa" class="dice-btn">🧹 Limpar Mapa</button>
+      </div>
+
+      <div id="mapa-grid"></div>
+    </section>
+
+    <!-- ===== ABA LOG ===== -->
+    <section id="log" class="tab-content">
+      <h2>📜 Log de Sessão</h2>
+      <p style="opacity:0.7; margin-bottom:15px;">
+        Registro automático de eventos (rolagens, cadastros, exclusões).
+      </p>
+
+      <form id="form-log" class="form-card">
+        <input type="text" name="evento" placeholder="Evento (ex: Goblin atacou o grupo)" required>
+        <button type="submit">Registrar Evento</button>
+      </form>
+
+      <div style="margin:20px 0;">
+        <button id="btn-limpar-log" class="dice-btn">🗑 Limpar Log</button>
+      </div>
+
+      <div id="lista-log"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

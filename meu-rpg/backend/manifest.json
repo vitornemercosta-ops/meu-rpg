@@ -1,0 +1,17 @@
+{
+  "name": "Grimório do Mestre - D&D",
+  "short_name": "Grimório",
+  "description": "Gerenciador de RPG de D&D",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1a1410",
+  "theme_color": "#b8860b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn5CJPC90ZXh0Pjwvc3ZnPg==",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
