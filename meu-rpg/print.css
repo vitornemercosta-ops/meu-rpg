@@ -1,28 +1,17 @@
 @media print {
-  header, #dice-box, #backup-box, .form-card,
-  .tab-btn, #theme-toggle, .btn-delete, .btn-ataque,
-  #btn-proximo-turno, #btn-reset-iniciativa,
-  #btn-restaurar-catalogo, #audio-controls,
-  #btn-gerar-dragao, #btn-limpar-mapa, #btn-limpar-log,
-  #grid-size, #mapa-grid, #form-log, #form-iniciativa {
+  header, #dice-box, #backup-box, .form-card, .tab-btn, #theme-toggle,
+  .btn-delete, .btn-ataque, #btn-proximo-turno, #btn-reset-iniciativa,
+  #btn-restaurar-catalogo, #audio-controls, #btn-gerar-dragao,
+  #btn-limpar-mapa, #btn-limpar-log, #grid-size, #mapa-grid,
+  #form-log, #form-iniciativa {
     display: none !important;
   }
-
-  body {
-    background: white !important;
-    color: black !important;
-  }
-
+  body { background: white !important; color: black !important; }
   .tab-content { display: block !important; }
-
   .card {
-    border: 1px solid #333 !important;
-    background: white !important;
-    color: black !important;
-    page-break-inside: avoid;
-    margin-bottom: 10px;
+    border: 1px solid #333 !important; background: white !important;
+    color: black !important; page-break-inside: avoid; margin-bottom: 10px;
   }
-
   .card h4 { color: #000 !important; }
   .grid { display: block !important; }
   h2 { color: #000 !important; border-color: #000 !important; }

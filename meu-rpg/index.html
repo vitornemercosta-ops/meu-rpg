@@ -15,7 +15,7 @@
     <button id="theme-toggle" title="Alternar tema">🌙</button>
 
     <nav>
-    <button class="tab-btn active" data-tab="dragoes">Dragões</button>
+      <button class="tab-btn active" data-tab="dragoes">Dragões</button>
       <button class="tab-btn" data-tab="jogadores">Jogadores</button>
       <button class="tab-btn" data-tab="inimigos">Inimigos</button>
       <button class="tab-btn" data-tab="magias">Magias</button>
@@ -41,6 +41,7 @@
       <input type="file" id="file-import" accept=".json" hidden>
       <button id="btn-print" class="dice-btn">🖨️ Imprimir Fichas</button>
       <button id="btn-bg" class="dice-btn" title="Trocar fundo">🖼️ Fundo</button>
+      <span id="api-status">🔄 Conectando...</span>
     </div>
 
     <div id="audio-controls">
@@ -55,8 +56,8 @@
   </header>
 
   <main>
-    <!-- ===== ABA DRAGÕES ===== -->
-   <section id="dragoes" class="tab-content active">
+    <!-- ABA DRAGÕES -->
+    <section id="dragoes" class="tab-content active">
       <h2>Dragões</h2>
       <div style="margin-bottom:15px;">
         <button id="btn-gerar-dragao" class="dice-btn">🎲 Gerar Dragão Aleatório</button>
@@ -67,14 +68,14 @@
       <form id="form-dragao" class="form-card">
         <input type="text" name="nome" placeholder="Nome" required>
         <input type="text" name="tipo" placeholder="Tipo (ex: Vermelho)" required>
-        <input type="number" name="idade" placeholder="Idade (anos)" required>
+        <input type="number" name="idade" placeholder="Idade (anos)">
         <input type="number" name="hp" placeholder="HP" required>
-        <input type="text" name="sopro" placeholder="Sopro (ex: Fogo)" required>
+        <input type="text" name="sopro" placeholder="Sopro (ex: Fogo)">
         <button type="submit">Adicionar</button>
       </form>
     </section>
 
-    <!-- ===== ABA JOGADORES ===== -->
+    <!-- ABA JOGADORES -->
     <section id="jogadores" class="tab-content">
       <h2>Fichas dos Jogadores</h2>
 
@@ -89,11 +90,11 @@
       <h3>Criar Ficha de Jogador</h3>
       <form id="form-jogador" class="form-card">
         <input type="text" name="nome" placeholder="Nome do personagem" required>
-        <input type="text" name="classe" placeholder="Classe" required>
-        <input type="text" name="raca" placeholder="Raça" required>
-        <input type="number" name="nivel" placeholder="Nível" required>
-        <input type="number" name="hp" placeholder="HP" required>
-        <input type="number" name="ca" placeholder="CA" required>
+        <input type="text" name="classe" placeholder="Classe">
+        <input type="text" name="raca" placeholder="Raça">
+        <input type="number" name="nivel" placeholder="Nível">
+        <input type="number" name="hp" placeholder="HP">
+        <input type="number" name="ca" placeholder="CA">
 
         <div class="atributos-grid">
           <label>FOR <input type="number" name="forca" value="10" min="1" max="20"></label>
@@ -108,7 +109,7 @@
       </form>
     </section>
 
-    <!-- ===== ABA INIMIGOS ===== -->
+    <!-- ABA INIMIGOS -->
     <section id="inimigos" class="tab-content">
       <h2>Fichas de Inimigos</h2>
       <div id="lista-inimigos" class="grid"></div>
@@ -116,15 +117,15 @@
       <h3>Adicionar Inimigo</h3>
       <form id="form-inimigo" class="form-card">
         <input type="text" name="nome" placeholder="Nome" required>
-        <input type="text" name="tipo" placeholder="Tipo (ex: Goblin)" required>
-        <input type="number" name="hp" placeholder="HP" required>
-        <input type="number" name="ca" placeholder="CA (Armadura)" required>
-        <input type="text" name="ataque" placeholder="Ataque" required>
+        <input type="text" name="tipo" placeholder="Tipo (ex: Goblin)">
+        <input type="number" name="hp" placeholder="HP">
+        <input type="number" name="ca" placeholder="CA (Armadura)">
+        <input type="text" name="ataque" placeholder="Ataque">
         <button type="submit">Adicionar</button>
       </form>
     </section>
 
-    <!-- ===== ABA MAGIAS ===== -->
+    <!-- ABA MAGIAS -->
     <section id="magias" class="tab-content">
       <h2>Magias</h2>
       <div style="margin-bottom:20px;">
@@ -135,15 +136,15 @@
       <h3>Adicionar Magia</h3>
       <form id="form-magia" class="form-card">
         <input type="text" name="nome" placeholder="Nome da magia" required>
-        <input type="number" name="nivel" placeholder="Nível (0 = truque)" required>
-        <input type="text" name="escola" placeholder="Escola (ex: Evocação)" required>
+        <input type="number" name="nivel" placeholder="Nível (0 = truque)">
+        <input type="text" name="escola" placeholder="Escola (ex: Evocação)">
         <input type="text" name="dano" placeholder="Dano (ex: 8d6 fogo)">
-        <textarea name="descricao" placeholder="Descrição da magia" required></textarea>
+        <textarea name="descricao" placeholder="Descrição da magia"></textarea>
         <button type="submit">Adicionar</button>
       </form>
     </section>
 
-    <!-- ===== ABA INICIATIVA ===== -->
+    <!-- ABA INICIATIVA -->
     <section id="iniciativa" class="tab-content">
       <h2>⚔️ Rastreador de Iniciativa</h2>
       <p style="opacity:0.7; margin-bottom:15px;">
@@ -153,7 +154,7 @@
       <form id="form-iniciativa" class="form-card">
         <input type="text" name="nome" placeholder="Nome do combatente" required>
         <input type="number" name="iniciativa" placeholder="Valor da iniciativa" required>
-        <input type="text" name="tipo" placeholder="Jogador / Inimigo" required>
+        <input type="text" name="tipo" placeholder="Jogador / Inimigo">
         <button type="submit">Adicionar à Iniciativa</button>
       </form>
 
@@ -165,7 +166,7 @@
       <div id="lista-iniciativa" class="grid"></div>
     </section>
 
-    <!-- ===== ABA MAPA ===== -->
+    <!-- ABA MAPA -->
     <section id="mapa" class="tab-content">
       <h2>🗺️ Mapa de Combate</h2>
       <p style="opacity:0.7; margin-bottom:15px;">
@@ -188,7 +189,7 @@
       <div id="mapa-grid"></div>
     </section>
 
-    <!-- ===== ABA LOG ===== -->
+    <!-- ABA LOG -->
     <section id="log" class="tab-content">
       <h2>📜 Log de Sessão</h2>
       <p style="opacity:0.7; margin-bottom:15px;">
